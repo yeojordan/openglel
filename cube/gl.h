@@ -24,3 +24,4 @@
 #define TEX_BALL	7
 
 //#define detail 13
+#define CUBE_SIZE 100

@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 PROG = cube
 
-SRCS = main.cpp imageloader.cpp anchor.cpp
+SRCS = *.cpp #main.cpp imageloader.cpp anchor.cpp axis.cpp
 
 ifeq ($(shell uname),Darwin)
 	LIBS = -framework OpenGL -framework GLUT
@@ -17,4 +17,4 @@ $(PROG):	$(SRCS)
 	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS)
 
 clean:
-	rm -f $(PROG)
+	rm -f $(PROG); clear

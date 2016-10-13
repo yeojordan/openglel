@@ -3,13 +3,14 @@
 
 #include "imageloader.h"
 #include "anchor.h"
-
+#include "axis.h"
+#include "wheel.h"
 #include "gl.h"
-
+#include "solidCylinder.h"
 
 using namespace std;
 
-#define CUBE_SIZE 100
+
 //#define detail 13
 
 
@@ -26,6 +27,17 @@ GLfloat rotX;
 GLfloat rotXSpeed;
 GLfloat zoom = 0.1;
 
-
+// bool paused = true;
 int paused = 1;
 GLfloat detail = 13.0;
+
+bool xRot = false;
+bool yRot = false;
+/*
+    Objects to Create:
+        - Anchor
+        - Mast
+        - Tombstone
+        - Pirate Ship Wheel
+
+*/

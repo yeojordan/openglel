@@ -15,19 +15,17 @@ void handleKeypress(unsigned char key, int x, int y)
 			break;
 		// Increase Speed
 		case 'F': case 'f':
-			speed = (speed < 1) ? speed + 0.01: speed;
-			// if (speed < 1.0)
-			// {
-			// 	speed + 0.01;
-			// }
+			if (speed < 1.0)
+			{
+				speed += 0.1;
+			}
 			break;
 		// Decrease Speed
 		case 'S': case 's':
-			speed = (speed >= 0.01) ? speed - 0.01 : speed;
-			// if (speed >= 0.01)
-			// {
-			// 	speed - 0.01;
-			// }
+			if (speed >= 0.1)
+			{
+				speed -= 0.1;
+			}
 			break;
 		// Pause Animation
 		case 'T': case 't':
@@ -55,21 +53,37 @@ void handleKeypress(unsigned char key, int x, int y)
 			}
 			break;
 		// Rotate clockwise around y-axis
-		case 'Y': case 'y':
+		case 'Y': //case 'y':
+			yRot = true;
 			if (rotYSpeed < 0.3f)
 			{
-				 rotYSpeed + 0.1f;
+				rotYSpeed += 0.5f;
 			}
-			if (rotY > 360)
+			// if (rotY > 360)
+			// {
+			// 	rotY -= 360;
+			// }
+			break;
+		case 'y':
+			if (yRot == true)
 			{
-				rotY - 360;
+				yRot = false;
+				rotYSpeed = 0.0f;
 			}
 			break;
 		// Rotate clockwise around x-axis
-		case 'X': case 'x':
-			if (rotXSpeed > -0.3f)
+		case 'X':// case 'x':
+			xRot = true;
+			if (rotXSpeed > -0.3f )
 			{
-				rotXSpeed - 0.1f;
+				rotXSpeed -= 0.5f;
+			}
+			break;
+		case 'x':
+			if ( xRot == true)
+			{
+				xRot = false;
+				rotXSpeed = 0.0f;
 			}
 			break;
 		// Flat Shaded Polygonization
@@ -85,9 +99,11 @@ void handleKeypress(unsigned char key, int x, int y)
 			paused = 0;
 			if (speed < 0.01)
 			{
-				 speed + 0.01;
+				 speed += 0.01;
 			}
 			break;
+
+
 	}
 }
 
@@ -138,6 +154,9 @@ void drawScene()
 	GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 
+
+void anchor(int segments);
+
 	GLfloat lightColor[] = {0.7f, 0.7f, 0.7f, 1.0f};
 	GLfloat lightPos[] = {-2 * BOX_SIZE, BOX_SIZE, 4 * BOX_SIZE, 1.0f};
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
@@ -152,92 +171,25 @@ void drawScene()
 
 
 		// Base (Floor) Plane
-		glPushMatrix();
-			glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
-			glScalef(40.0f, 0.1f ,  40.0f);
-			glTranslatef(0.0f, -60.0f,0.0f  );
-			glutSolidCube(2.0f);
-		glPopMatrix();
+		// glPushMatrix();
+		// 	glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
+		// 	glScalef(40.0f, 0.1f ,  40.0f);
+		// 	glTranslatef(0.0f, -60.0f,0.0f  );
+		// 	glutSolidCube(2.0f);
+		// glPopMatrix();
+
+		// Anchor
+		// glPushMatrix();
+		// 	//glScalef(2.0,2.0,2.0);
+		// 	anchor(detail);
+		// glPopMatrix();
+
+		// Draw x,y,z axis
+		axis();
 
 		glPushMatrix();
-			glRotatef(-_angle, 1.0f, 1.0f, 0.0f);
-			anchor(detail);
+			wheel(detail);
 		glPopMatrix();
-
-	// Lines to show the 3 axis on the screen for reference
-	glBegin(GL_LINES);
-	// X LINE IS RED
-	glColor3f( 1.0, 0.0, 0.0 );
-	glVertex3f( -(2.0*CUBE_SIZE), 0, 0);
-	glVertex3f(  (2.0*CUBE_SIZE), 0, 0);
-	// Y LINE IS GREEN
-	glColor3f( 0.0, 1.0, 0.0 );
-	glVertex3f( 0, -(2.0*CUBE_SIZE), 0);
-	glVertex3f( 0,  (2.0*CUBE_SIZE), 0);
-	// Z LINE IS BLUE
-	glColor3f( 0.0, 0.0, 1.0 );
-	glVertex3f( 0, 0, -(2.0*CUBE_SIZE));
-	glVertex3f( 0, 0,  (2.0*CUBE_SIZE));
-	glEnd();
-
-
-
-
-	// Lines to show the 3 axis on the screen for reference
-	glBegin(GL_LINES);
-	// X LINE IS RED
-	glColor3f( 1.0, 0.0, 0.0 );
-	glVertex3f( -(2.0*CUBE_SIZE), 0, 0);
-	glVertex3f(  (2.0*CUBE_SIZE), 0, 0);
-	// Y LINE IS GREEN
-	glColor3f( 0.0, 1.0, 0.0 );
-	glVertex3f( 0, -(2.0*CUBE_SIZE), 0);
-	glVertex3f( 0,  (2.0*CUBE_SIZE), 0);
-	// Z LINE IS BLUE
-	glColor3f( 0.0, 0.0, 1.0 );
-	glVertex3f( 0, 0, -(2.0*CUBE_SIZE));
-	glVertex3f( 0, 0,  (2.0*CUBE_SIZE));
-	glEnd();
-
-
-
-
-	// Lines to show the 3 axis on the screen for reference
-	glBegin(GL_LINES);
-	// X LINE IS RED
-	glColor3f( 1.0, 0.0, 0.0 );
-	glVertex3f( -(2.0*CUBE_SIZE), 0, 0);
-	glVertex3f(  (2.0*CUBE_SIZE), 0, 0);
-	// Y LINE IS GREEN
-	glColor3f( 0.0, 1.0, 0.0 );
-	glVertex3f( 0, -(2.0*CUBE_SIZE), 0);
-	glVertex3f( 0,  (2.0*CUBE_SIZE), 0);
-	// Z LINE IS BLUE
-	glColor3f( 0.0, 0.0, 1.0 );
-	glVertex3f( 0, 0, -(2.0*CUBE_SIZE));
-	glVertex3f( 0, 0,  (2.0*CUBE_SIZE));
-	glEnd();
-
-
-
-
-	// Lines to show the 3 axis on the screen for reference
-	glBegin(GL_LINES);
-	// X LINE IS RED
-	glColor3f( 1.0, 0.0, 0.0 );
-	glVertex3f( -(2.0*CUBE_SIZE), 0, 0);
-	glVertex3f(  (2.0*CUBE_SIZE), 0, 0);
-	// Y LINE IS GREEN
-	glColor3f( 0.0, 1.0, 0.0 );
-	glVertex3f( 0, -(2.0*CUBE_SIZE), 0);
-	glVertex3f( 0,  (2.0*CUBE_SIZE), 0);
-	// Z LINE IS BLUE
-	glColor3f( 0.0, 0.0, 1.0 );
-	glVertex3f( 0, 0, -(2.0*CUBE_SIZE));
-	glVertex3f( 0, 0,  (2.0*CUBE_SIZE));
-	glEnd();
-
-
 
 
 
@@ -256,7 +208,7 @@ void drawScene()
 
 //Called every 25 milliseconds
 void update(int value) {
-	_angle += 1.0f;
+	_angle += speed;
 	if (_angle > 360) {
 		_angle -= 360;
 	}
