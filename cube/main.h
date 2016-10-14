@@ -7,6 +7,7 @@
 #include "wheel.h"
 #include "gl.h"
 #include "solidCylinder.h"
+#include "mast.h"
 
 using namespace std;
 

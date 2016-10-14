@@ -187,11 +187,14 @@ void anchor(int segments);
 		// Draw x,y,z axis
 		axis();
 
-		glPushMatrix();
-			wheel(detail);
-		glPopMatrix();
+		// Draw Wheel
+		// glPushMatrix();
+		// 	wheel(detail);
+		// glPopMatrix();
 
-
+		// glPushMatrix();
+		// 	mast(detail);
+		// glPopMatrix();
 
 
 
