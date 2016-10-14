@@ -8,6 +8,7 @@
 #include "gl.h"
 #include "solidCylinder.h"
 #include "mast.h"
+#include "cage.h"
 
 using namespace std;
 
@@ -36,9 +37,10 @@ bool xRot = false;
 bool yRot = false;
 /*
     Objects to Create:
-        - Anchor
-        - Mast
-        - Tombstone
-        - Pirate Ship Wheel
-
+        - [x] Anchor
+        - [x] Mast
+        - [ ] Tombstone
+        - [x] Pirate Ship Wheel
+        - [x] Shark Cage
+        - [ ]
 */
