@@ -9,8 +9,12 @@ void rock(int segments)
     glBindTexture(GL_TEXTURE_2D, 1);
 
     glPushMatrix();
+        glEnable(GL_TEXTURE_2D);
+        gluQuadricTexture(quad, true);
         // glTranslatef(-10.0f, 0.0f, 18.0f);
+        glColor3f(1.0,1.0,1.0);
         gluSphere(quad,  2.5f,  30, segments);
+        glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 
 }
