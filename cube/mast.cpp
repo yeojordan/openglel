@@ -6,11 +6,12 @@ void mast(int segments)
     GLUquadric* quad = gluNewQuadric();
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 2);
+    glBindTexture(GL_TEXTURE_2D, TEX_WOOD);
 
     glPushMatrix();
         glEnable(GL_TEXTURE_2D);
         gluQuadricTexture(quad, true);
+        glColor3f(1.0,1.0,1.0);
         // Main Pole
         glPushMatrix();
             glRotatef(90.0, 1.0f, 0.0f, 0.0f);

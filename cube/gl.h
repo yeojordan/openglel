@@ -12,11 +12,13 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "colours.h"
+
 #define TAU (6.283185308)
 #define ZOOM (0.1)
 
-#define TEX_GRASS	1
-#define TEX_BRICKS	2
+#define TEX_ROCK	1
+#define TEX_WOOD	2
 #define TEX_STEEL	3
 #define TEX_GLASS	4
 #define TEX_SAND	5

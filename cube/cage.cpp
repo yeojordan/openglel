@@ -3,7 +3,11 @@
 void cage(int segments)
 {
     int i;
+
+    glColor3f(0.3,0.3,0.3);
     glPushMatrix();
+
+
         glPushMatrix();
         glTranslatef(0.0f, 0.0f, -30.0f);
         glPushMatrix();

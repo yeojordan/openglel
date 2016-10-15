@@ -10,6 +10,7 @@
 #include "mast.h"
 #include "cage.h"
 #include "rock.h"
+#include "chain.h"
 
 
 using namespace std;

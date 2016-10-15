@@ -6,7 +6,7 @@ void rock(int segments)
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 1);
+    glBindTexture(GL_TEXTURE_2D, TEX_ROCK);
 
     glPushMatrix();
         glEnable(GL_TEXTURE_2D);

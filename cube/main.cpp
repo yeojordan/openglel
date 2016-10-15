@@ -185,10 +185,12 @@ void drawScene()
 		glPopMatrix();
 
 		// Anchor
-		// glPushMatrix();
-		// 	//glScalef(2.0,2.0,2.0);
-		// 	anchor(detail);
-		// glPopMatrix();
+		glPushMatrix();
+			//glScalef(2.0,2.0,2.0);
+			glTranslatef(50.0f, 0.0f, 0.0f);
+			glRotatef(-45.0, 0.0f, 1.0f, 1.0f);
+			anchor(detail);
+		glPopMatrix();
 
 		// Draw x,y,z axis
 		axis();
@@ -199,18 +201,26 @@ void drawScene()
 		// 	wheel(detail);
 		// glPopMatrix();
 
-		// glPushMatrix();
-		// 	mast(detail);
-		// glPopMatrix();
+		glPushMatrix();
+			glScalef(0.5, 0.5, 0.5);
+			glTranslatef(-50.0f, 20.0f, 0.0f);
+			glRotatef(-35.0, 0.0f, 0.0f, 1.0f);
+			mast(detail);
+		glPopMatrix();
+
+		glPushMatrix();
+			glScalef(0.5, 0.5, 0.5);
+			glTranslatef(0.0f, 30.0f, -80.0f);
+			cage(detail);
+		glPopMatrix();
 
 		// glPushMatrix();
-		// 	cage(detail);
+		// 	rock(detail);
 		// glPopMatrix();
 
 		glPushMatrix();
-			rock(detail);
+			drawChain(10, 0.0,0.0,0.0);
 		glPopMatrix();
-
 
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
