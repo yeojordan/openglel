@@ -211,6 +211,12 @@ void drawScene()
 		glPushMatrix();
 			glScalef(0.5, 0.5, 0.5);
 			glTranslatef(0.0f, 30.0f, -80.0f);
+
+			glPushMatrix();
+				glScalef(2.0, 1.0, 2.0);
+				drawChain(50, detail, 0.0,43.0,0.0);
+			glPopMatrix();
+
 			cage(detail);
 		glPopMatrix();
 
@@ -218,9 +224,9 @@ void drawScene()
 		// 	rock(detail);
 		// glPopMatrix();
 
-		glPushMatrix();
-			drawChain(10, 0.0,0.0,0.0);
-		glPopMatrix();
+		// glPushMatrix();
+		//
+		// glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();

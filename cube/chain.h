@@ -16,6 +16,6 @@
 //---------------------------------------------------------------------------
 //FUNCTION PROTOTYPES
 
-void drawChain(int,double,double,double);
+void drawChain(int,int,double,double,double);
 
 //---------------------------------------------------------------------------
