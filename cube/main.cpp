@@ -4,7 +4,7 @@
 
 const float BOX_SIZE = 7.0f; //The length of each side of the cube
 float _angle = 0;            //The rotation of the box
-GLuint _textureId;           //The OpenGL id of the texture
+GLuint tex_1;           //The OpenGL id of the texture
 
 void handleKeypress(unsigned char key, int x, int y)
 {
@@ -46,7 +46,7 @@ void handleKeypress(unsigned char key, int x, int y)
 		// Zoom Out
 		case 'z':
 			// 0.1 Increments
-			if (zoom - 0.1 > 0.1f)
+			if (zoom - 0.1 > 0.01f)
 	        {
 	        	detail = detail - 1;
 				zoom = zoom - 0.1;
@@ -108,7 +108,7 @@ void handleKeypress(unsigned char key, int x, int y)
 }
 
 //Makes the image into a texture, and returns the id of the texture
-GLuint loadTexture(Image* image) {
+void loadTexture(Image* image) {
 	GLuint textureId;
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -120,7 +120,7 @@ GLuint loadTexture(Image* image) {
 				 GL_RGB,
 				 GL_UNSIGNED_BYTE,
 				 image->pixels);
-	return textureId;
+	//return textureId;
 }
 
 void initRendering() {
@@ -132,9 +132,14 @@ void initRendering() {
 
 	// Set background colour
 	glClearColor(0.0f, 0.1f, 0.3f, 0.5f);
-	Image* image = loadBMP("vtr.bmp");
-	_textureId = loadTexture(image);
-	delete image;
+	// Image* image = loadBMP("vtr.bmp");
+	Image* image1 = loadBMP("textures/rock.bmp");
+	Image* image2 = loadBMP("textures/wood.bmp");
+
+	loadTexture(image1);
+	loadTexture(image2);
+	delete image1;
+	delete image2;
 }
 
 void handleResize(int w, int h) {
@@ -151,12 +156,11 @@ void drawScene()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	glTranslatef(0.0f, -10.0f, -80.0f);
+	// Initial camera position
+	glTranslatef(0.0f, -1.0f, -20.0f);
 
 	GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
-
-
 
 
 	GLfloat lightColor[] = {0.7f, 0.7f, 0.7f, 1.0f};
@@ -173,24 +177,25 @@ void drawScene()
 
 
 		// Base (Floor) Plane
-		// glPushMatrix();
-		// 	glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
-		// 	glScalef(40.0f, 0.1f ,  40.0f);
-		// 	glTranslatef(0.0f, -60.0f,0.0f  );
-		// 	glutSolidCube(2.0f);
-		// glPopMatrix();
+		glPushMatrix();
+			glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
+			glScalef(400.0f, 0.1f , 400.0f);
+			glTranslatef(0.0f, -60.0f,0.0f  );
+			glutSolidCube(2.0f);
+		glPopMatrix();
 
 		// Anchor
-		glPushMatrix();
-			//glScalef(2.0,2.0,2.0);
-			anchor(detail);
-		glPopMatrix();
+		// glPushMatrix();
+		// 	//glScalef(2.0,2.0,2.0);
+		// 	anchor(detail);
+		// glPopMatrix();
 
 		// Draw x,y,z axis
 		axis();
 
 		//Draw Wheel
 		// glPushMatrix();
+		// 	glTranslatef(50.0f, 0.0f, 0.0f);
 		// 	wheel(detail);
 		// glPopMatrix();
 
@@ -202,6 +207,9 @@ void drawScene()
 		// 	cage(detail);
 		// glPopMatrix();
 
+		glPushMatrix();
+			rock(detail);
+		glPopMatrix();
 
 
 	glDisable(GL_TEXTURE_2D);

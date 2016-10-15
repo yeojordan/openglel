@@ -9,6 +9,8 @@
 #include "solidCylinder.h"
 #include "mast.h"
 #include "cage.h"
+#include "rock.h"
+
 
 using namespace std;
 

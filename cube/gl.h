@@ -25,3 +25,7 @@
 
 //#define detail 13
 #define CUBE_SIZE 100
+
+
+
+#define TEX_ROCK 1
