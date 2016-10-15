@@ -130,6 +130,8 @@ void initRendering() {
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
 
+	// Set background colour
+	glClearColor(0.0f, 0.1f, 0.3f, 0.5f);
 	Image* image = loadBMP("vtr.bmp");
 	_textureId = loadTexture(image);
 	delete image;
@@ -155,7 +157,7 @@ void drawScene()
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 
 
-void anchor(int segments);
+
 
 	GLfloat lightColor[] = {0.7f, 0.7f, 0.7f, 1.0f};
 	GLfloat lightPos[] = {-2 * BOX_SIZE, BOX_SIZE, 4 * BOX_SIZE, 1.0f};
