@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-
+#include <string.h>
 #include "imageloader.h"
 #include "anchor.h"
 #include "axis.h"
@@ -47,3 +47,6 @@ bool yRot = false;
         - [x] Shark Cage
         - [ ]
 */
+
+void printText(void);
+void GLPrint(char *, float x, float y);

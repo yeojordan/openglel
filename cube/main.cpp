@@ -107,6 +107,54 @@ void handleKeypress(unsigned char key, int x, int y)
 	}
 }
 
+void GLPrint(const char* text, float x, float y)
+{
+
+	int i;
+	int length = strlen(text);
+
+	glColor3f(1.0,1.0,1.0);
+	glRasterPos3f(x,y,-10.0f);
+	glPushMatrix();
+
+	//one char at a time
+	for(i=0; i < length; i++)
+		{
+			glutBitmapCharacter(GLUT_BITMAP_8_BY_13, text[i]);
+		}
+	glPopMatrix();
+}
+
+void printText()
+{
+    glDisable(GL_LIGHTING);
+    glPushMatrix();
+
+    glRotatef(-15.0f,1.0f,0.0f,0.0f);
+
+    GLPrint("Zoom: In: 'Z' Out: 'z'", -20.0,25.0);
+    // GLPrint("In: 'Z'", -20.0,24.0);
+    // GLPrint("Out: 'z'",-20.0,23.0);
+    GLPrint("Rotate: X axis: 'X' Y axis: 'Y'",-20.0,22.0);
+    // GLPrint("X axis: 'X or x'", -20.0,20.0);
+    // GLPrint("Y axis: 'Y or y'", -20.0,19.0);
+    GLPrint("Animate: Run: 'A' or 'a'", -20.0,20.0);
+    // GLPrint("Run: 'A or a'", -20.0,16.0);
+    GLPrint("Speed Up: 'F or f'",-20.0,18.0);
+
+    GLPrint("Slow Down: 'S or s'",-20.0,14.0);
+    GLPrint("Pause: 'T or t",-20.0,13.0);
+    GLPrint("Resume: 'C or c'",-20.0,12.0);
+    GLPrint("Rendering",-20.0,9.0);
+    GLPrint("Flat Shaded: 'p'",-20.0,8.0);
+    GLPrint("Smooth Shaded: 'P'",-20.0,7.0);
+    glPopMatrix();
+    glEnable(GL_LIGHTING);
+
+}
+
+
+
 //Makes the image into a texture, and returns the id of the texture
 void loadTexture(Image* image) {
 	GLuint textureId;
@@ -184,45 +232,49 @@ void drawScene()
 			glutSolidCube(2.0f);
 		glPopMatrix();
 
-		// Anchor
+		// // Anchor
+		// glPushMatrix();
+		// 	//glScalef(2.0,2.0,2.0);
+		// 	glTranslatef(50.0f, 0.0f, 0.0f);
+		// 	glRotatef(-45.0, 0.0f, 1.0f, 1.0f);
+		// 	anchor(detail);
+		// glPopMatrix();
+		//
+		// // Draw x,y,z axis
+		// axis();
 		glPushMatrix();
-			//glScalef(2.0,2.0,2.0);
-			glTranslatef(50.0f, 0.0f, 0.0f);
-			glRotatef(-45.0, 0.0f, 1.0f, 1.0f);
-			anchor(detail);
+			glScalef(0.75,0.75,0.75);
+			printText();
 		glPopMatrix();
 
-		// Draw x,y,z axis
-		axis();
-
-		//Draw Wheel
+		// //Draw Wheel
 		// glPushMatrix();
-		// 	glTranslatef(50.0f, 0.0f, 0.0f);
+		// 	//glTranslatef(50.0f, 0.0f, 0.0f);
 		// 	wheel(detail);
 		// glPopMatrix();
-
-		glPushMatrix();
-			glScalef(0.5, 0.5, 0.5);
-			glTranslatef(-50.0f, 20.0f, 0.0f);
-			glRotatef(-35.0, 0.0f, 0.0f, 1.0f);
-			mast(detail);
-		glPopMatrix();
-
-		glPushMatrix();
-			glScalef(0.5, 0.5, 0.5);
-			glTranslatef(0.0f, 30.0f, -80.0f);
-
-			glPushMatrix();
-				glScalef(2.0, 1.0, 2.0);
-				drawChain(50, detail, 0.0,43.0,0.0);
-			glPopMatrix();
-
-			cage(detail);
-		glPopMatrix();
-
+		//
 		// glPushMatrix();
-		// 	rock(detail);
+		// 	glScalef(0.5, 0.5, 0.5);
+		// 	glTranslatef(-50.0f, 20.0f, 0.0f);
+		// 	glRotatef(-35.0, 0.0f, 0.0f, 1.0f);
+		// 	mast(detail);
 		// glPopMatrix();
+		//
+		// glPushMatrix();
+		// 	glScalef(0.5, 0.5, 0.5);
+		// 	glTranslatef(0.0f, 30.0f, -80.0f);
+		//
+		// 	glPushMatrix();
+		// 		glScalef(2.0, 1.0, 2.0);
+		// 		drawChain(50, detail, 0.0,43.0,0.0);
+		// 	glPopMatrix();
+		//
+		// 	cage(detail);
+		// glPopMatrix();
+
+		glPushMatrix();
+			rock(detail);
+		glPopMatrix();
 
 		// glPushMatrix();
 		//
@@ -237,6 +289,8 @@ void drawScene()
 	glutSwapBuffers();
 
 	glutPostRedisplay();
+
+
 }
 
 //Called every 25 milliseconds
@@ -248,6 +302,8 @@ void update(int value) {
 	glutPostRedisplay();
 	glutTimerFunc(25, update, 0);
 }
+
+
 
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
