@@ -22,7 +22,7 @@ using namespace std;
 GLfloat speed = 0.0;
 GLfloat hour;
 // GLfloat minute;
-// GLfloat discoRot;
+GLfloat cageSpd;
 
 
 //CAMERA ROTATIONS
@@ -48,5 +48,7 @@ bool yRot = false;
         - [ ]
 */
 
+void display(void);
+void printControls(void);
 void printText(void);
 void GLPrint(char *, float x, float y);

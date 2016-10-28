@@ -1,3 +1,3 @@
 #include "solidCylinder.h"
 
-void cage(int segments);
+void cage(double animSpd, int segments);

@@ -15,7 +15,6 @@
 
 void drawChain( int pairs, int segments, double xStart, double yStart, double zStart )
 {
-        // RED TEAPOT CHAIN
         for ( int jj = 0; jj < pairs; jj++ )
         {
             glPushMatrix();

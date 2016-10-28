@@ -19,7 +19,7 @@
 
 #define TEX_ROCK	1
 #define TEX_WOOD	2
-#define TEX_STEEL	3
+#define TEX_HARAMBE	3
 #define TEX_GLASS	4
 #define TEX_SAND	5
 #define TEX_CAN		6

@@ -11,7 +11,7 @@ void mast(int segments)
     glPushMatrix();
         glEnable(GL_TEXTURE_2D);
         gluQuadricTexture(quad, true);
-        glColor3f(1.0,1.0,1.0);
+
         // Main Pole
         glPushMatrix();
             glRotatef(90.0, 1.0f, 0.0f, 0.0f);

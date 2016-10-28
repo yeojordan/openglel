@@ -1,14 +1,44 @@
 #include "cage.h"
-
-void cage(int segments)
+#include "chain.h"
+#include <stdio.h>
+void cage(double animSpd, int segments)
 {
     int i;
+    double height = 13  * animSpd;
 
     glColor3f(0.3,0.3,0.3);
+
+
     glPushMatrix();
+
+        // Animation
+        // if(height > 320.0 )
+        // {
+        //         height = height * -1;
+        //         glTranslatef(0.0,640.0 ,0.0);
+        // }
+        // else if (height <= 0 )
+        // {
+        //     //printf("height %lf", height);
+        //         height = 1+ (animSpd *13);
+        //     //glTranslatef(0.0,640.0 ,0.0);
+        // }
+        // else if(height <= 320 && height > 0)
+        // {
+        //     height = (animSpd *13);
+        // }
+
+
+        glTranslatef(0.0,height,0.0);
 
 
         glPushMatrix();
+
+        glPushMatrix();
+            glScalef(2.0, 1.0, 2.0);
+            drawChain(50, segments, 0.0,43.0,0.0);
+        glPopMatrix();
+
         glTranslatef(0.0f, 0.0f, -30.0f);
         glPushMatrix();
 
