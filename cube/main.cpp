@@ -170,6 +170,7 @@ void initRendering() {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_FOG);
@@ -240,41 +241,34 @@ void drawScene()
 	// Fog
 	// GLfloat fogColor[4] = {77.0f/285.0f, 88.0f/285.0f, 124.0f/285.0f, 0.5f};
 
+	// FOG
+	////////////////////////////////////////////////////////////////////////////
 	GLfloat fogColor[4] = {53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.5f};
 	glFogfv(GL_FOG_COLOR, fogColor);
 	glFogi(GL_FOG_MODE, GL_LINEAR);
 	glFogf(GL_FOG_START, 25.0f);
 	glFogf(GL_FOG_END, 40.0f);
+	////////////////////////////////////////////////////////////////////////////
 
-		//
-		// // Fog
-		// GLfloat fogColor[4] = {0.5f, 0.5f, 0.5f, 1.0f};
-		// glFogfv(GL_FOG_COLOR, fogColor);
-		// glFogi(GL_FOG_MODE, GL_LINEAR);
-		// glFogf(GL_FOG_START, 0.0f);
-		// glFogf(GL_FOG_END, 100.0f);
 		glFogf(GL_FOG_DENSITY, 0.8f);
 
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//
-	//
-	//
-	// glMatrixMode(GL_MODELVIEW);
-	// glLoadIdentity();
-	//
-	// // Initial camera position
-	// glTranslatef(0.0f, -1.0f, -20.0f);
-	//
-	// GLfloat ambientLight[] = {0.3f, 0.3f, 0.3f, 1.0f};
-	// glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
-	//
-	//
-	// GLfloat lightColor[] = {0.7f, 0.7f, 0.7f, 1.0f};
-	// GLfloat lightPos[] = {-2 * BOX_SIZE, BOX_SIZE, 4 * BOX_SIZE, 1.0f};
-	// glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
-	// glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-	//
-	// glTranslatef(0.0,0.0,-50.0);
+
+			//Add green directed light
+	        GLfloat lightColor1[] = {0.0f, 1.0f, 0.0f, 1.0f};
+	        GLfloat lightPos1[] = {0.0f, 150.0f, 50.0f, 1.0f};
+	        glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+	        glLightfv(GL_LIGHT1, GL_SPECULAR, lightColor1);
+	        glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+
+
+
+			//Add green directed light
+			GLfloat lightColor0[] = {1.0f, 0.0f, 0.0f, 0.50f};
+			GLfloat lightPos0[] = {100.0f, 0.0f, 50.0f, 1.0f};
+			glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+			glLightfv(GL_LIGHT0, GL_SPECULAR, lightColor0);
+			glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+
 	glPushMatrix();
 
 	// glTranslatef(0,0,zoom);
@@ -343,6 +337,7 @@ glEnable(GL_COLOR_MATERIAL);
 			anchor(detail);
 		glPopMatrix();
 	glPopMatrix();
+
 		// Draw x,y,z axis
 		axis();
 
