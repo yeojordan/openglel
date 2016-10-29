@@ -11,6 +11,7 @@
 #include "cage.h"
 #include "rock.h"
 #include "chain.h"
+#include "bubbles.h"
 
 
 using namespace std;
@@ -21,7 +22,7 @@ using namespace std;
 
 GLfloat speed = 0.0;
 GLfloat hour;
-// GLfloat minute;
+GLfloat wheelSpd;
 GLfloat cageSpd;
 
 
@@ -45,10 +46,9 @@ bool yRot = false;
         - [ ] Tombstone
         - [x] Pirate Ship Wheel
         - [x] Shark Cage
-        - [ ]
+        - [x] Rocks
 */
 
 void display(void);
-void printControls(void);
 void printText(void);
 void GLPrint(char *, float x, float y);

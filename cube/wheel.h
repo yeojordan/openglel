@@ -1,4 +1,4 @@
 
 #include "solidCylinder.h"
 
-void wheel(int segments);
+void wheel(double animSpd, int segments);

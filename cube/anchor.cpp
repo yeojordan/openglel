@@ -6,7 +6,7 @@ void anchor(int segments)
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	    glBindTexture(GL_TEXTURE_2D, 1);
+	    glBindTexture(GL_TEXTURE_2D, 3);
 
 		//Side View
 		// glRotatef(90.0, 0.0f, 1.0f, 0.0f);
@@ -16,7 +16,7 @@ void anchor(int segments)
 		glPushMatrix();
 			glEnable(GL_TEXTURE_2D);
 			gluQuadricTexture(quad, true);
-			glColor3f(1.0, 0.0, 0.0);
+			glColor3f(0.5, 0.5, 0.5);
 			// Top loop
 			glPushMatrix();
 				glTranslatef(0.0f,22.0f, 0.0f);
@@ -35,7 +35,7 @@ void anchor(int segments)
 
 				// Sideways Pole
 				glPushMatrix();
-					
+
 					glTranslatef(10.0f,20.0f, 0.0f);
 					glRotatef(-90.0, 0.0, 1.0, 0.0);
 					glTranslatef(18.0f,-20.0f, 0.0f);

@@ -125,41 +125,6 @@ void GLPrint(const char* text, float x, float y)
 	glPopMatrix();
 }
 
-void printControls()
-{
-    glDisable(GL_LIGHTING);
-	glPushMatrix();
-
-        // Formatting and location of text fields
-        float xCo = -13.3;
-        float yCo = 7.6;
-        float ySep = 0.5;
-        int numControls = 11;
-
-        const char* controls[numControls];
-        controls[0] = "Key Functions";
-        controls[1] = "-------------";
-        controls[2] = "<Z>: Zoom In";
-        controls[3] = "<z>: Zoom Out";
-        controls[4] = "<x><X>: X Rotation";
-        controls[5] = "<y><Y>: Y Rotation";
-        controls[6] = "<p>: Flat Shaded Polygonization";
-        controls[7] = "<P>: Smooth Shaded Polygonization";
-        controls[8] = "<a><A>: Start Animation";
-        controls[8] = "<a><A>: Pause Animation";
-        controls[8] = "<a><A>: Resume Animation";
-        controls[9] = "<r><R>: Reset All";
-        controls[10] = "<Esc>: Quit Program";
-
-        // Actual text printed to the screen
-        for ( int ii = 0; ii < numControls; ii++ )
-            GLPrint( controls[ii], xCo, yCo - ( (float)ii * ySep ) );
-
-	glPopMatrix();
-	glEnable(GL_LIGHTING);
-}
-
-
 void printText()
 {
     glDisable(GL_LIGHTING);
@@ -167,44 +132,22 @@ void printText()
 //	glTranslatef(-10.0,0.0,0.0);
 	glPushMatrix();
 
-	    glRotatef(-20.0f,1.0f,0.0f,0.0f);
+	    glRotatef(0.5f,1.0f,0.0f,0.0f);
 
-		glTranslatef(0.0,9.0,0.0);
-		GLPrint("Input:",-24.0,12.0);
-		GLPrint("<Z>/<z> : Zooms in/out",-23.9,11.0);
-		GLPrint("<x>/<X> : X-axis rotation clock/anti-clockwise",-23.7,10.0);
-		GLPrint("<y>/<Y> : Y-axis rotation clock/anti-clockwise",-23.5,9.0);
-		GLPrint("<p>/<P> : Turn on Smooth/Flat Shading",-20.0,8.0);
-		GLPrint("<a>/<A> : Start animation",-20.0,7.0);
-		GLPrint("<t>/<T> : Pause animation",-20.0,6.0);
-		GLPrint("<c>/<C> : Resume Animation",-20.0,5.0);
-		GLPrint("<Esc> : Quit the program",-20.0,4.0);
+		glTranslatef(0.0,5.0,0.0);
+		GLPrint("Input:",-22.0,12.0);
+		GLPrint("<Z>/<z> : Zooms in/out",-22.0,11.0);
+		GLPrint("<x>/<X> : X-axis rotation clock/anti-clockwise",-22.0,10.0);
+		GLPrint("<y>/<Y> : Y-axis rotation clock/anti-clockwise",-22.25,9.0);
+		GLPrint("<p>/<P> : Turn on Smooth/Flat Shading",-22.25,8.0);
+		GLPrint("<a>/<A> : Start animation",-22.25,7.0);
+		GLPrint("<t>/<T> : Pause animation",-22.25,6.0);
+		GLPrint("<c>/<C> : Resume Animation",-22.25,5.0);
+		GLPrint("<Esc> : Quit the program",-22.5,4.0);
 
-
-
-
-
-	    // GLPrint("Zoom: In: 'Z' Out: 'z'", -25.0,25.0);
-	    // // GLPrint("In: 'Z'", -20.0,24.0);
-	    // // GLPrint("Out: 'z'",-20.0,23.0);
-	    // GLPrint("Rotate: X axis: 'X' Y axis: 'Y'",-25.0,23.0);
-	    // // GLPrint("X axis: 'X or x'", -20.0,20.0);
-	    // // GLPrint("Y axis: 'Y or y'", -20.0,19.0);
-	    // GLPrint("Animate: Run: 'A' or 'a'", -25.0,21.0);
-	    // // GLPrint("Run: 'A or a'", -20.0,16.0);
-	    // GLPrint("Speed Up: 'F or f'",-25.0,18.0);
-		//
-	    // GLPrint("Slow Down: 'S or s'",-25.0,15.0);
-	    // GLPrint("Pause: 'T or t",-25.0,12.0);
-	    // GLPrint("Resume: 'C or c'",-25.0,9.0);
-	    // GLPrint("Rendering",-25.0,6.0);
-	    // GLPrint("Flat Shaded: 'p'",-25.0,3.0);
-	    // GLPrint("Smooth Shaded: 'P'",-25.0,0.0);
     glPopMatrix();
     glEnable(GL_LIGHTING);
-
 }
-
 
 
 //Makes the image into a texture, and returns the id of the texture
@@ -235,18 +178,18 @@ void initRendering() {
 
 	// Set background colour
 	//glClearColor(0.0f, 0.1f, 0.3f, 0.5f);
-glClearColor(77.0f/285.0f, 88.0f/285.0f, 100.0f/285.0f, 0.15f);
+glClearColor(53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.15f);
 	// Image* image = loadBMP("vtr.bmp");
 	Image* image1 = loadBMP("textures/rock.bmp");
 	Image* image2 = loadBMP("textures/wood.bmp");
-	// Image* image3 = loadBMP("textures/gorilla.bmp");
+	Image* image3 = loadBMP("textures/metal.bmp");
 
 	loadTexture(image1);
 	loadTexture(image2);
-	// loadTexture(image3);
+	loadTexture(image3);
 	delete image1;
 	delete image2;
-	// delete image3;
+	delete image3;
 }
 
 void handleResize(int w, int h) {
@@ -256,8 +199,51 @@ void handleResize(int w, int h) {
 	gluPerspective(45.0, (float)w / (float)h, 1.0, 200.0);
 }
 
+
+////////////////////////////////////////////////////////////////////////////
+
+void drawFloor()
+{
+    static GLfloat floorVertices[4][3] = {
+        { -2000.0, 0.0, 2000.0 },
+        { 2000.0, 0.0, 2000.0 },
+        { 2000.0, 0.0, -2000.0 },
+        { -2000.0, 0.0, -2000.0 },
+    };
+    glPushMatrix();
+    glDisable(GL_LIGHTING);
+    glColor3f(151.0/298.0, 93.0/298.0, 54.0/298.0);
+    glTranslatef(0.0, -20.0, 0.0);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3fv(floorVertices[0]);
+            glTexCoord2f(0.0, 1600.0);
+            glVertex3fv(floorVertices[1]);
+            glTexCoord2f(1600.0, 1600.0);
+            glVertex3fv(floorVertices[2]);
+            glTexCoord2f(1600.0, 0.0);
+            glVertex3fv(floorVertices[3]);
+        glEnd();
+        glEnable(GL_LIGHTING);
+
+    glPopMatrix();
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
 void drawScene()
 {
+	// Fog
+	// GLfloat fogColor[4] = {77.0f/285.0f, 88.0f/285.0f, 124.0f/285.0f, 0.5f};
+
+	GLfloat fogColor[4] = {53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.5f};
+	glFogfv(GL_FOG_COLOR, fogColor);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, 25.0f);
+	glFogf(GL_FOG_END, 40.0f);
 
 		//
 		// // Fog
@@ -266,7 +252,7 @@ void drawScene()
 		// glFogi(GL_FOG_MODE, GL_LINEAR);
 		// glFogf(GL_FOG_START, 0.0f);
 		// glFogf(GL_FOG_END, 100.0f);
-		// glFogf(GL_FOG_DENSITY, 8f);
+		glFogf(GL_FOG_DENSITY, 0.8f);
 
 	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//
@@ -287,12 +273,16 @@ void drawScene()
 	// glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
 	// glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	//
-
+	// glTranslatef(0.0,0.0,-50.0);
 	glPushMatrix();
+
+	// glTranslatef(0,0,zoom);
+
 
 	glScalef(zoom,zoom,zoom);
 	glRotatef(rotY,0.0f,1.0f,0.0f); //rotate about y
 	glRotatef(rotX,1.0f,0.0f,0.0f); //rotate about x
+
 
 	// glPushMatrix();
 	// 	glTranslatef(-50.0, 50.0,0.0);
@@ -303,13 +293,38 @@ void drawScene()
 
 		// Base (Floor) Plane
 		glPushMatrix();
-			glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
-			glScalef(4000.0f, 0.1f , 4000.0f);
-			glTranslatef(0.0f, -60.0f,0.0f  );
-			glutSolidCube(2.0f);
+			// // glColor3f(255.0f/540.0f, 184.0f/540.0f, 77.0f/540.0f);
+			glColor3f(246.0f/503.0f, 187.0f/503.0f, 70.0f/503.0f);
+			// glScalef(4000.0f, 0.1f , 4000.0f);
+			 glTranslatef(0.0f, -10.0f,0.0f  );
+			// glutSolidCube(2.0f);
+
+glDisable(GL_COLOR_MATERIAL);
+			float mat_ambient[]  ={ 0.24725f, 0.1995f, 0.0745f, 1.0f };
+			float mat_diffuse[]  ={0.75164f, 0.60648f, 0.22648f, 1.0f };
+			float mat_specular[] ={0.628281f, 0.555802f, 0.366065f, 1.0f };
+			float shine =11.2f ;
+
+
+			    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+			    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+			    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+			    glMaterialf(GL_FRONT, GL_SHININESS, shine);
+
+
+
+
+
+			glRotatef(90.0,1.0,0.0,0.0);
+			GLUquadric* quad = gluNewQuadric();
+			gluDisk(quad,0.01,  4000.0, detail, detail);
+
+glEnable(GL_COLOR_MATERIAL);
+			// drawFloor();
 		glPopMatrix();
 
-
+	glPushMatrix();
+		glScalef(2.0,2.0,2.0);
 		// Rock for Anchor
 		glPushMatrix();
 			glScalef(5.0,7.0,4.0);
@@ -326,15 +341,17 @@ void drawScene()
 			glRotatef(-45.0, 1.0f, 0.0f, 0.0f);
 			anchor(detail);
 		glPopMatrix();
-
+	glPopMatrix();
 		// Draw x,y,z axis
 		axis();
 
 
 		//Draw Wheel
 		glPushMatrix();
+			glScalef(1.5,1.5,1.5);
+
 			//glTranslatef(50.0f, 0.0f, 0.0f);
-			wheel(detail);
+			wheel(wheelSpd, detail);
 		glPopMatrix();
 
 
@@ -369,12 +386,11 @@ void drawScene()
 		// 	rock(detail);
 		// glPopMatrix();
 
-		// glPushMatrix();
-		//
-		// glPopMatrix();
+		glPushMatrix();
+			bubbles(cageSpd, detail);
+		glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
-
 
 		glPopMatrix();
 
@@ -383,7 +399,7 @@ void drawScene()
 
 	if(!paused)
 	{
-
+		wheelSpd += 0.5*speed;
 		cageSpd+=speed;
 	}
 
@@ -416,12 +432,6 @@ void display()
 	gluLookAt (0.0, 1.0, 7.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);//camera
 
 
-			// Fog
-			GLfloat fogColor[4] = {77.0f/285.0f, 88.0f/285.0f, 124.0f/285.0f, 0.5f};
-			glFogfv(GL_FOG_COLOR, fogColor);
-			glFogi(GL_FOG_MODE, GL_LINEAR);
-			glFogf(GL_FOG_START, 10.0f);
-			glFogf(GL_FOG_END, 120.0f);
 
 	drawScene();
 

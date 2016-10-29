@@ -4,7 +4,18 @@
 void cage(double animSpd, int segments)
 {
     int i;
-    double height = 13  * animSpd;
+    double height = 4  * animSpd;
+    glDisable(GL_COLOR_MATERIAL);
+    float mat_ambient[] ={ 0.19125f, 0.0735f, 0.0225f, 1.0f };
+    float mat_diffuse[] ={0.7038f, 0.27048f, 0.0828f, 1.0f };
+    float mat_specular[] ={0.256777f, 0.137622f, 0.086014f, 1.0f };
+    float shine = 12.8f;
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, shine);
+
 
     glColor3f(0.3,0.3,0.3);
 
@@ -122,4 +133,6 @@ void cage(double animSpd, int segments)
 			glutSolidCube(2.0f);
 		glPopMatrix();
     glPopMatrix();
+
+    glEnable(GL_COLOR_MATERIAL);
 }
