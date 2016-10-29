@@ -4,8 +4,9 @@ void bubbles(double animSpd, int segments)
 {
     GLUquadric* quad = gluNewQuadric();
 
+    glTranslatef(0.0,animSpd*10,0.0);
     glPushMatrix();
-        glTranslatef(10.0f, 0.0f, 120.0f);
+        glTranslatef(-60.0f, 0.0f, 120.0f);
         glColor4f(1.0f, 1.0f, 1.0f, 0.05);
         gluSphere(quad,  4.5f,  30,  segments);
 
