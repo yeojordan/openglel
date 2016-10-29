@@ -171,16 +171,17 @@ void initRendering() {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
+	glEnable(GL_LIGHT2);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_FOG);
+	// glEnable(GL_FOG);
 	// glClearColor(0.5f, 0.5f, 0.5f, 1);
 
 	glEnable(GL_BLEND); //Enable alpha blending
-       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //Set the blend function
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //Set the blend function
 	// Set background colour
 	//glClearColor(0.0f, 0.1f, 0.3f, 0.5f);
-glClearColor(53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.15f);
+	glClearColor(53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.15f);
 	// Image* image = loadBMP("vtr.bmp");
 	Image* image1 = loadBMP("textures/rock.bmp");
 	Image* image2 = loadBMP("textures/wood.bmp");
@@ -263,11 +264,11 @@ void drawScene()
 
 
 			//Add green directed light
-			GLfloat lightColor0[] = {1.0f, 0.0f, 0.0f, 0.50f};
-			GLfloat lightPos0[] = {100.0f, 0.0f, 50.0f, 1.0f};
-			glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
-			glLightfv(GL_LIGHT0, GL_SPECULAR, lightColor0);
-			glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+			GLfloat lightColor2[] = {1.0f, 0.0f, 0.0f, 0.50f};
+			GLfloat lightPos2[] = {100.0f, 0.0f, 50.0f, 1.0f};
+			glLightfv(GL_LIGHT2, GL_DIFFUSE, lightColor2);
+			glLightfv(GL_LIGHT2, GL_SPECULAR, lightColor2);
+			glLightfv(GL_LIGHT2, GL_POSITION, lightPos2);
 
 	glPushMatrix();
 
