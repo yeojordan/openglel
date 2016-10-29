@@ -175,7 +175,8 @@ void initRendering() {
 	glEnable(GL_FOG);
 	// glClearColor(0.5f, 0.5f, 0.5f, 1);
 
-
+	glEnable(GL_BLEND); //Enable alpha blending
+       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //Set the blend function
 	// Set background colour
 	//glClearColor(0.0f, 0.1f, 0.3f, 0.5f);
 glClearColor(53.0f/410.0f, 129.0f/410.0f, 228.0f/410.0f, 0.15f);
