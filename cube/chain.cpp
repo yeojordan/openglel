@@ -1,33 +1,24 @@
-/***************************************************************************
-*  FILE: anchor.cpp
-*  AUTHOR: Connor Beardsmore - 15504319
-*  UNIT: CG200 Assignment S2 - 2016
-*  PURPOSE: Draws the axis lines centered at the origin
-*  LAST MOD: 10/10/16
-*  REQUIRES: anchor.hpp
-***************************************************************************/
-
 #include "chain.h"
 
-//---------------------------------------------------------------------------
-// NAME: drawAnchor();
-// PURPOSE: Draw chain of anchor + anchor head
-
-void drawChain( int pairs, int segments, double xStart, double yStart, double zStart )
+void drawChain( int links, int segments, double x, double y, double z )
 {
-        for ( int jj = 0; jj < pairs; jj++ )
+    glPushMatrix();
+        // Number of links in the chain
+        for ( int i = 0; i < links; i++ )
         {
             glPushMatrix();
-
-                glColor3f( GREY );
-                glTranslatef( xStart, ( yStart + 5.0f * (double)jj ), zStart );
+                // Move the link up
+                glTranslatef( x, ( y + 5.0f * (double)i ), z );
                 glScalef( 0.35f, 1.0f, 0.35f );
-                if ( jj % 2 == 0 )
+                // Rotate every second link
+                if ( i % 2 == 0 )
+                {
                     glRotatef( 80.0f, 0.0f, 1.0f, 0.0f );
+                }
                 glutSolidTorus( 1.2f, 3.0f, segments, segments);
 
             glPopMatrix();
         }
-}
 
-//---------------------------------------------------------------------------
+    glPopMatrix();
+}

@@ -1,0 +1,85 @@
+\documentclass[]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+% Title Page
+\title{Computer Graphics 200 \\
+		OpenGL Report}
+\author{Jordan Yeo\\
+	     17727626\\ }
+
+%\usepackage[numbers]{natbib}
+\usepackage[]{natbib}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\break
+
+\clearpage
+\pagenumbering{arabic} 
+\section{Introduction}
+
+The following report is to accompany the Computer Graphics Assignment 2 for 2016. It will detail the features of the OpenGL assignment, along with the algorithm choice, animation, external tools and modelling of objects.
+
+
+
+
+\section{Features}
+\begin{itemize}
+	\item All key bindings detailed in the assignment specification have been implemented. With the addition of a key binding for the `esc' key to close the program.
+	\item Animations have been implemented for the cage, bubbles and pirate ship wheel.
+	\item Fog has been implemented for the entire scene. As the user zooms in the fog decreases and the scene becomes clearer.
+	\item Transparency has been implemented for the bubbles, and can be seen from the initial camera position. 
+	\item Textures have been added to the surface of various objects in the scene. Including: rocks, ship's mast, anchor.
+	\item Three light sources have been implemented: ambient, and two positioned lights.
+\end{itemize}
+
+\section{Modelling, Rendering \& Algorithm}
+The assignment is composed of six composite objects. All were constructed using the in built Glut/Glu functions in OpenGL. \\ \\
+These six are: 
+
+\begin{itemize}
+	\item An anchor 
+	\item A cage
+	\item Rocks
+	\item A ship's mast
+	\item A ship's steering wheel
+	\item A chain
+\end{itemize}
+
+\noindent
+The anchor was built using a torus, seven cylinders (3 with altered start and end radii) and two spheres. Added to the anchor was a metal.bmp texture to give it a metallic appearance, along with a base grey colour. \\
+
+\noindent
+The cage was built using twelve cylinders and two cubes. The cube was scaled in the y-axis for the top and bottom panel of the cage. A material was used to give the cage a metallic surface finish to the cage. \\
+
+\noindent
+The rocks are constructed from a collection of spheres that have been translated and rotated using a for-loop, giving it a somewhat random configuration. A bitmap of rock was added to give the rocks a more realistic appearance. The value for subdivisions on the spheres was set at a low value to give the spheres a less round look.\\
+
+\noindent
+The ship mast was constructed using 2 cylinders, one rotated 90 degrees, and a cyclinder with a end radius the same size as the radius of the main cylinder of the mast. Added to the entire mast was a wood bitmap to give it a wooden appearance. \\
+
+\noindent
+The steering wheel was assembled using a torus for the outer ring, a cylinder for the inner circle, and cyclinders for the handles. The handles were placed using a for-loop to rotate around the center of the steering wheel. \\
+
+\noindent
+A chain was made using a multiple torus objects. Every second torus was rotated 80 degrees and translated up to give it a realistic appearance. Each link was scaled to produce an elongated look rather than a circular look for each link. A material surface finish was applied to match that of the cage to give a brass appearance. \\
+
+\noindent
+To apply the texture to the base plane, rocks, anchor and mast an image loader function was used from VideoTutorialsRock. ImageLoader is a function created by the founder of VideoTutorialsRock. It enables the loading of a bitmap (.bmp) file to be used as a texture for objects within OpenGL. I has been used for all textures used on the objects in the assignment. A bmp file is loaded and given a unique ID number that can be used when the bitmap loaded is needed for a texture. 
+
+\section{Animation}
+The animations in this scene includes a cage and chain that begins slowly raising up from its initial position on the sand bed. It has it's own variable for speed. The steering wheel moves at a 45 degree angle from the origin between the x and z axis. This has been achieved with a rotatation based on the animation speed then wrapped in a glPushMatrix and glPopMatrix is a translation. This combination of rotation and translation gives the realistic appearance of the wheel turning and moving. The transparent bubbles move upwards with the cage speed variable as well, and move out of the scene. The use of separate speed variables allows for extensability if other objects need to change animation speed. 
+
+\section*{References}
+
+[1]``OpenGL Video Tutorial - Home", Videotutorialsrock.com, 2016. [Online].\newline
+\hspace*{1cm} Available: http://www.videotutorialsrock.com/index.php. [Accessed: 30- Oct- 2016]. \\
+
+\noindent
+[2]``Some Materials", It.hiof.no, 2016. [Online]. Available: \newline \hspace*{1cm} http://www.it.hiof.no/~borres/j3d/explain/light/p-materials.html. [Accessed: 30- Oct- 2016].
+
+\bibliographystyle{ieeer}
+\nocite{*}
+\bibliography{references}
+\end{document}          

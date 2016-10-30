@@ -25,9 +25,7 @@ void mast(int segments)
 
             glTranslatef(0.0f, 0.0f, -40.0f);
             gluCylinder(quad, 20.0f, 6.0f, 15.0f, segments, segments);
-            // glPushMatrix();
-            //     gluDisk(quad2,  6.0f, 6.0f, segments, segments);
-            // glPopMatrix();
+
         glPopMatrix();
 
         // Sideways post
