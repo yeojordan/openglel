@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS = -Wall
-PROG = lighting
-
-SRCS = main.cpp
+PROG = cube
+DEPRECATED=-Wno-deprecated-declarations
+SRCS = *.cpp #main.cpp imageloader.cpp anchor.cpp axis.cpp
 
 ifeq ($(shell uname),Darwin)
 	LIBS = -framework OpenGL -framework GLUT
@@ -12,8 +12,9 @@ endif
 
 all: $(PROG)
 	./$(PROG)
+
 $(PROG):	$(SRCS)
-	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS)
+	$(CC) $(CFLAGS) -o $(PROG) $(SRCS) $(LIBS) $(DEPRECATED)
 
 clean:
-	rm -f $(PROG)
+	rm -f $(PROG); clear
